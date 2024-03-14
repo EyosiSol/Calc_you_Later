@@ -18,6 +18,11 @@ buttons.forEach((button) => {
             let num2 = splitted[1]
             area.textContent = parseInt(num1) * parseInt(num2);
         }       
+    }else if(value === "<="){
+        let content = area.textContent;
+        if(content.length > 0){
+            area.textContent = content.slice(0,-1);
+        }
     }
     else {
       let areavalue = area.textContent;
