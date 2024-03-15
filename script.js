@@ -34,19 +34,27 @@ clear.addEventListener("click", () => {
   op = "";
   val2 = "";
 });
-del.addEventListener("click", ()=>{
-    const currentText = area.textContent;
-    if(currentText.length>0){
-        area.textContent = currentText.slice(0,-1);
-    }
-})
+del.addEventListener("click", () => {
+  const currentText = area.textContent;
+  if (currentText.length > 0) {
+    area.textContent = currentText.slice(0, -1);
+  }
+});
+
 nums.forEach((numbers) => {
   numbers.addEventListener("click", () => {
     if (startNew === true) {
       area.textContent = "";
       startNew = false;
     }
-    area.textContent += numbers.textContent;
+    let content = area.textContent;
+    console.log(content);
+    if (content.length < 6){
+        area.textContent += numbers.textContent;
+    }
+    else{
+        numbers.disable = true;
+    }
   });
 });
 
@@ -54,67 +62,58 @@ add.addEventListener("click", () => {
   val1 += area.textContent;
   op = "+";
   startNew = true;
-
 });
 sub.addEventListener("click", () => {
   val1 -= area.textContent;
   op = "-";
   startNew = true;
- 
 });
 mult.addEventListener("click", () => {
-    val1 += area.textContent;
-    op = "*";
-    startNew = true;
-  });
+  val1 += area.textContent;
+  op = "*";
+  startNew = true;
+});
 divide.addEventListener("click", () => {
-    val1 += area.textContent;
-    op = "/";
-    startNew = true;
-  });
+  val1 += area.textContent;
+  op = "/";
+  startNew = true;
+});
 percent.addEventListener("click", () => {
-    val1 += area.textContent;
-    op = "%";
-    startNew = true;
-  });
+  val1 += area.textContent;
+  op = "%";
+  startNew = true;
+});
 power.addEventListener("click", () => {
-    val1 += area.textContent;
-    op = "^";
-    startNew = true;
-  });
+  val1 += area.textContent;
+  op = "^";
+  startNew = true;
+});
 
 equals.addEventListener("click", () => {
-
   if (area.textContent === "") {
     area.textContent = "ERR";
-  } 
-  else if(op === "+"){
-        val2 = area.textContent;
-        area.textContent = parseInt(val1) + parseInt(val2);
-  }
-  else if(op === "-"){
+  } else if (op === "+") {
     val2 = area.textContent;
-    area.textContent = -1*(parseInt(val1) + parseInt(val2));
-  }
-  else if(op === "*"){
+    area.textContent = parseInt(val1) + parseInt(val2);
+  } else if (op === "-") {
     val2 = area.textContent;
-    area.textContent = (parseInt(val1) * parseInt(val2));
-  }
-  else if(op === "/"){
-    val2 = area.textContent
-    answer = (parseInt(val1) / parseInt(val2));
-    if(answer === Infinity){
-        area.textContent = "ERR"
-    }else{
-        area.textContent = answer;
+    area.textContent = -1 * (parseInt(val1) + parseInt(val2));
+  } else if (op === "*") {
+    val2 = area.textContent;
+    area.textContent = parseInt(val1) * parseInt(val2);
+  } else if (op === "/") {
+    val2 = area.textContent;
+    answer = parseInt(val1) / parseInt(val2);
+    if (answer === Infinity) {
+      area.textContent = "ERR";
+    } else {
+      area.textContent = answer;
     }
-  }
-  else if(op === "%"){
+  } else if (op === "%") {
     val2 = area.textContent;
-    area.textContent = ((parseFloat(val1)*0.01) * parseInt(val2))
-  }
-  else if(op === "^"){
+    area.textContent = parseFloat(val1) * 0.01 * parseInt(val2);
+  } else if (op === "^") {
     val2 = area.textContent;
-    area.textContent = (parseFloat(val1) ** parseInt(val2))
+    area.textContent = parseFloat(val1) ** parseInt(val2);
   }
 });
