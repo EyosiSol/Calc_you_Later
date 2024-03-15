@@ -48,12 +48,10 @@ nums.forEach((numbers) => {
       startNew = false;
     }
     let content = area.textContent;
-    console.log(content);
-    if (content.length < 6){
-        area.textContent += numbers.textContent;
-    }
-    else{
-        numbers.disable = true;
+    if (content.length < 6) {
+      area.textContent += numbers.textContent;
+    } else {
+      numbers.disable = true;
     }
   });
 });
@@ -94,24 +92,49 @@ equals.addEventListener("click", () => {
     area.textContent = "ERR";
   } else if (op === "+") {
     val2 = area.textContent;
-    area.textContent = parseInt(val1) + parseInt(val2);
+    let prod = parseInt(val1) + parseInt(val2);
+    let answer = prod.toString();
+    if (answer.length > 5) {
+      let first2 = answer.slice(0, 2);
+      let theRest = answer.slice(2);
+      let theRestLen = theRest.length;
+      area.textContent = ` ${first2}e+${theRestLen}`;
+    }else{
+        area.textContent = prod;
+        startNew = true;
+    }
   } else if (op === "-") {
     val2 = area.textContent;
     area.textContent = -1 * (parseInt(val1) + parseInt(val2));
   } else if (op === "*") {
     val2 = area.textContent;
-    area.textContent = parseInt(val1) * parseInt(val2);
+    let prod = parseInt(val1) * parseInt(val2);
+    let answer = prod.toString();
+    if (answer.length > 5) {
+      let first2 = answer.slice(0, 2);
+      let theRest = answer.slice(2);
+      let theRestLen = theRest.length;
+      area.textContent = ` ${first2}e+${theRestLen}`;
+    }else{
+        area.textContent = prod;
+    }
   } else if (op === "/") {
     val2 = area.textContent;
-    answer = parseInt(val1) / parseInt(val2);
-    if (answer === Infinity) {
-      area.textContent = "ERR";
-    } else {
-      area.textContent = answer;
-    }
+    quot= parseFloat(val1) / parseFloat(val2);
+    area.textContent = quot;
   } else if (op === "%") {
     val2 = area.textContent;
-    area.textContent = parseFloat(val1) * 0.01 * parseInt(val2);
+    let prod = parseFloat(val1) * 0.01 * parseInt(val2);
+    let answer = prod.toString();
+    if (answer.length > 5) {
+      let first2 = answer.slice(0, 2);
+      let theRest = answer.slice(2);
+      let theRestLen = theRest.length;
+      area.textContent = ` ${first2}e+${theRestLen}`;
+    }else{
+        area.textContent = prod;
+    }
+    
   } else if (op === "^") {
     val2 = area.textContent;
     area.textContent = parseFloat(val1) ** parseInt(val2);
