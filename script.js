@@ -22,11 +22,29 @@ const divide = document.querySelector("#divide");
 const percent = document.querySelector("#percentage");
 const power = document.querySelector("#power");
 
+window.addEventListener("keydown", function (e) {
+  const pressed = e.key;
+  if (/\d/.test(pressed)) {
+    if (startNew === true) {
+      area.textContent = "";
+      startNew = false;
+    }
+    let content = area.textContent;
+    if (content.length < 6) {
+      area.textContent += pressed;
+    } else {
+      this.window.removeEventListener("keydown", (e) => {
+        e.key;
+      });
+    }
+  }
+});
+
 let startNew = true;
 let val1 = "";
 let val2 = "";
 let operand = "";
-
+let result = "";
 clear.addEventListener("click", () => {
   area.textContent = "";
   startNew = true;
@@ -99,9 +117,9 @@ equals.addEventListener("click", () => {
       let theRest = answer.slice(2);
       let theRestLen = theRest.length;
       area.textContent = ` ${first2}e+${theRestLen}`;
-    }else{
-        area.textContent = prod;
-        startNew = true;
+    } else {
+      area.textContent = prod;
+      startNew = true;
     }
   } else if (op === "-") {
     val2 = area.textContent;
@@ -115,12 +133,12 @@ equals.addEventListener("click", () => {
       let theRest = answer.slice(2);
       let theRestLen = theRest.length;
       area.textContent = ` ${first2}e+${theRestLen}`;
-    }else{
-        area.textContent = prod;
+    } else {
+      area.textContent = prod;
     }
   } else if (op === "/") {
     val2 = area.textContent;
-    quot= parseFloat(val1) / parseFloat(val2);
+    quot = parseFloat(val1) / parseFloat(val2);
     area.textContent = quot;
   } else if (op === "%") {
     val2 = area.textContent;
@@ -131,10 +149,9 @@ equals.addEventListener("click", () => {
       let theRest = answer.slice(2);
       let theRestLen = theRest.length;
       area.textContent = ` ${first2}e+${theRestLen}`;
-    }else{
-        area.textContent = prod;
+    } else {
+      area.textContent = prod;
     }
-    
   } else if (op === "^") {
     val2 = area.textContent;
     area.textContent = parseFloat(val1) ** parseInt(val2);
